@@ -230,7 +230,7 @@
                         clickOutsideToClose: true,
                         escapeToClose: true,
                         focusOnOpen: false,
-                        zIndex: 2
+                        zIndex: 100
                     };
                     self.panelRef = scope._mdPanel.create(config);
                     self.panelRef.open();
