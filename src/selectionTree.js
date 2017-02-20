@@ -204,8 +204,8 @@
                         position = scope._mdPanel.newPanelPosition()
                             .relativeTo(element.find('#field'))
                             //.absolute()
-                            .left($(element.find('#field')).offset().left)
-                            .top($(element.find('#field')).offset().top + $(element.find('#field')).outerHeight());
+                            .left($(element.find('#field')).offset().left + 'px')
+                            .top(($(element.find('#field')).offset().top + $(element.find('#field')).outerHeight()) + 'px');
 
 
                         maxHeight = maxHeightBottom;
@@ -213,8 +213,8 @@
                         position = scope._mdPanel.newPanelPosition()
                             .relativeTo(element.find('#field'))
                             //.absolute()
-                            .left($(element.find('#field')).offset().left)
-                            .bottom($(window).height() - $(element.find('#field')).offset().top); // + $(element.find('#field')).outerHeight());
+                            .left($(element.find('#field')).offset().left + 'px')
+                            .bottom(($(window).height() - $(element.find('#field')).offset().top) + 'px'); // + $(element.find('#field')).outerHeight());
                         maxHeight = maxHeightTop;
                     }
 
