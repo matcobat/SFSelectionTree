@@ -8,17 +8,17 @@ selection-tree .chip {
     display: inline-block;
 }
 
-selection-tree #field.withData:not(.chip) {
+selection-tree .multiple-field.withData:not(.chip) {
     cursor: pointer;
 }
-selection-tree #field.readonly:not(.chip) {
+selection-tree .multiple-field.readonly:not(.chip) {
     cursor: not-allowed;
 }
-selection-tree #field.withoutData:not(.chip) {
+selection-tree .multiple-field.withoutData:not(.chip) {
     cursor: text;
 }
 
-selection-tree #field {
+selection-tree .multiple-field {
     position: relative;
     height: auto;
     min-height: 49px;
@@ -30,5 +30,5 @@ selection-tree #textfield:focus {
 }
 
 selection-tree .md-panel {
-	position: absolute;
+    position: absolute;
 }

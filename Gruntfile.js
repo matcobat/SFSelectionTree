@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                 src: [
                     'src/**/*.js'
                 ]
-            },
+            }
 
         },
 

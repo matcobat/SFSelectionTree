@@ -4,16 +4,21 @@
         'ngMaterial'
     ]);
 
-    app.directive('selectionTree', function() {
-        var template = '<div layout="row" layout-align="start center"> \
-            <div id="field" ng-class="{readonly: readonly, withData: data && !readonly, withoutData: !data && !readonly}" class="form-control" ng-click="!readonly && search($event)" flex> \
-                <span class="chip" ng-if="multiple" ng-repeat="result in results">{{ result.text }} <i ng-if="!readonly" class="fa fa-remove" ng-click="remove(result)"/></span> \
-                <span class="chip" ng-if="!multiple && results.text">{{ results.text }} <i ng-if="!readonly" class="fa fa-remove" ng-click="remove(result)"/></span> \
-                <input ng-show="!data" id="textfield" type="text" style="border: 0 solid transparent; background-color: transparent"> \
-            </div> \
-            <md-button ng-if="data && false" class="md-primary md-fab md-mini" ng-click="search()"><i class="fa fa-search" /></md-button> \
-        </div>';
-
+    app.directive('selectionTree', function($timeout) {
+        var template = '<div ng-if="multiple" layout="row" layout-align="start center"> \
+                            <div id="field" ng-class="{readonly: readonly, withData: data && !readonly, withoutData: !data && !readonly}" class="multiple-field form-control" ng-click="!readonly && search($event)" flex> \
+                                <span class="chip" ng-if="multiple" ng-repeat="result in results">{{ result.text }} <i ng-if="!readonly" class="fa fa-remove" ng-click="remove(result)"/></span> \
+                                <span class="chip" ng-if="!multiple && results.text">{{ results.text }} <i ng-if="!readonly" class="fa fa-remove" ng-click="remove()"/></span> \
+                                <input ng-show="!data" id="textfield" type="text" style="border: 0 solid transparent; background-color: transparent"> \
+                            </div> \
+                            <md-button ng-if="data && false" class="md-primary md-fab md-mini" ng-click="search()"><i class="fa fa-search" /></md-button> \
+                        </div> \
+                        <div ng-if="!multiple" class="input-group"> \
+                                <p class="form-control" id="field">{{ results.text }}</p> \
+                                <span class="input-group-btn"> \
+                            <button class="btn btn-danger" type="button" ng-click="remove()" ng-if="!required"><i class="fa fa-times"/></button> \
+                            <button class="btn btn-primary" type="button" ng-click="search()"><i class="fa fa-search"/></button> \
+                        </div>';
 
 
         return {
@@ -33,7 +38,9 @@
                     scope.results = ctrl.$modelValue;
 
                     if (scope.required && (!scope.results || scope.results.length == 0)) {
-                        $(element.find('#field')).addClass('ng-invalid').addClass('ng-invalid-required');
+                        $timeout(function() {
+                            $(element.find('#field')).addClass('ng-invalid').addClass('ng-invalid-required');
+                        });
                     }
                 };
 
@@ -236,10 +243,10 @@
                     self.panelRef.open();
                 };
             },
-            controller: function($scope, $mdPanel, $timeout) {
+            controller: ['$scope', '$mdPanel', '$timeout', function($scope, $mdPanel, $timeout) {
                 $scope._mdPanel = $mdPanel;
                 $scope._timeout = $timeout;
-            }
+            }]
         };
     });
 
