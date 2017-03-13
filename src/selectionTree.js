@@ -13,7 +13,7 @@
                             </div> \
                             <md-button ng-if="data && false" class="md-primary md-fab md-mini" ng-click="search()"><i class="fa fa-search" /></md-button> \
                         </div> \
-                        <div ng-if="!multiple" class="input-group"> \
+                        <div ng-if="!multiple" class="input-group" style="width: 100%"> \
                                 <p class="form-control" id="field">{{ results.text }}</p> \
                                 <span class="input-group-btn"> \
                             <button class="btn btn-danger" type="button" ng-click="remove()" ng-if="!required"><i class="fa fa-times"/></button> \
